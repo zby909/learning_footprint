@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		.avator {
+			width: 100px;
+			height: 100px;
+			border-radius: 50%;
+			position: relative;
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-image: url('http://resource.test.gzhaoku.com/images/fenxiao/2021/logo/1614214926757.jpeg');
+		}
+
+		.avator::after {
+			content: "";
+			position: absolute;
+			top: 10%;
+			width: 100%;
+			height: 100%;
+			border-radius: 50%;
+			/* 伪元素继承父元素背景 */
+			background: inherit;
+			/* 再加一些稀奇古怪的滤镜，调一调参数 */
+			filter: blur(10px) brightness(80%) opacity(.8);
+			z-index: -1;
+		}
+
+
+
+		.avator-transform {
+			overflow: hidden;
+			margin-top: 200px;
+			width: 100px;
+			height: 100px;
+			border-radius: 50%;
+			position: relative;
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-image: url('http://resource.test.gzhaoku.com/images/fenxiao/2021/logo/1614214926757.jpeg');
+		}
+
+		.avator-transform::before {
+			content: "";
+			position: absolute;
+			top: 50%;
+			width: 200px;
+			height: 10px;
+			background-color: rgba(255, 255, 255, 0.4);
+			transform: rotate(45deg);
+			animation: scan-light 3s ease-in infinite;
+		}
+
+		@keyframes scan-light {
+			from {
+				right: -100vw;
+			}
+
+			to {
+				right: 40vw;
+			}
+		}
+
+
+		.ty {
+			width: 250px;
+			height: 150px;
+			margin: 50px;
+			background: #FFD900;
+			border-radius: 50% 50%;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="avator">
+	</div>
+
+	<div class="avator-transform">
+	</div>
+
+	<div class="ty">
+
+	</div>
+</body>
+
+</html>

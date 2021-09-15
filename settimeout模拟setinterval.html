@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<script>
+		function mySetinterval(fn, t) {
+			let timer = null;
+			function interval() {
+				fn();
+				timer = setTimeout(interval, t);
+			}
+			// interval()//立即执行
+			setTimeout(interval, t);
+			return () => clearTimeout(timer)
+		}
+
+		let a = mySetinterval(() => {
+			console.log(new Date());
+		}, 1000)
+
+		// a()
+	</script>
+</body>
+
+</html>

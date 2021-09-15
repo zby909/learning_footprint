@@ -1,0 +1,65 @@
+<!--
+ * @Description: 
+ * @Author: zby
+ * @Date: 2021-08-02 11:43:29
+ * @LastEditTime: 2021-08-11 11:02:39
+ * @LastEditors: zby
+ * @Reference: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="./html2canvas.js"></script>
+</head>
+
+<body>
+
+	<body>
+		<div>
+			<img id="zby" src="./img/icon_qrcode focus.png" alt="">
+			<div>你好</div>
+		</div>
+
+		<canvas style="display: none;" id="myCanvas"></canvas>
+
+		<div style="margin-top: 30px;" onclick="drawCanvas()">下载</div>
+
+		<script>
+			function drawCanvas() {
+				let image = document.querySelector("#zby")
+				let canvas = document.getElementById("myCanvas");
+				canvas.width = 250;
+				canvas.height = 300;
+				let ctx = canvas.getContext("2d");
+				ctx.font = "30px Arial";
+				ctx.textAlign = 'center';
+				ctx.fillText("你好", 125, 240);
+				ctx.drawImage(image, 25, 0);//0, 0参数画布上的坐标点，图片将会拷贝到这个地方
+				let imageURL = canvas.toDataURL("image/png");    //canvas转base64图片
+				downloadImg(imageURL)
+				return imageURL;
+			}
+
+			function downloadImg(imageURL) {
+				const newWin = window.open('', '_blank')
+				newWin.document.body.innerHTML = `<img src="${imageURL}">`;
+				newWin.document.body.setAttribute('style', 'display: flex;align-items: center;justify-content: center;');
+				return
+				var oA = document.createElement("a");
+				oA.download = '';// 设置下载的文件名，默认是'下载'
+				oA.href = imageURL;
+				document.body.appendChild(oA);
+				oA.click();
+				oA.remove();// 下载之后把创建的元素删除
+			}
+		</script>
+	</body>
+
+
+</body>
+
+</html>

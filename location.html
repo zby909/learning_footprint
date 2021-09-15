@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+		integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+</head>
+<style>
+	.input-box {
+		position: relative;
+	}
+
+	.li-box {
+		position: absolute;
+		top: 30px;
+	}
+
+	.list-group {
+		width: 180px;
+		max-height: 150px;
+		overflow-y: auto;
+	}
+
+	.spanhover:hover {
+		background-color: #d9d9d9;
+	}
+</style>
+
+<body>
+	<div class="input-box">
+		<input id="input1" type="text">
+		<div class="li-box">
+			<div id="list-group" class="list-group">
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+		integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+		crossorigin="anonymous"></script>
+	<script>
+		let timeout;
+		$('#input1').bind('input propertychange', function () {
+			console.log('我改变了');
+			//防抖
+			clearTimeout(timeout)
+			timeout = setTimeout(() => {
+				getShuju($(this).val())
+			}, 1000)
+		});
+
+		function getShuju(keyword) {
+			let data = {
+				region: '广州',//查询城市非必填
+				keyword: keyword,//查询关键词
+				key: '7VUBZ-2NKCX-6XQ4K-ZDCI7-NE5CT-MMFAI',
+				output: 'jsonp'
+			};
+			$.ajax({
+				type: "GET",
+				url: "https://apis.map.qq.com/ws/place/v1/suggestion",
+				async: false,
+				data: data,
+				dataType: "jsonp",
+				success: function (result) {
+					console.log(result);
+					//失败清空
+					if (result.status === 300) {
+						$("#list-group").empty();
+						return;
+					}
+					//写入数据
+					xieru(result.data)
+				},
+				error: function (xhr, errorType, error) {
+					$("#list-group").empty();
+					console.log(error);
+				}
+			});
+		}
+		function xieru(rdata) {
+			//每次查询写入清空一次
+			$("#list-group").empty();
+			//遍历追加页面元素
+			for (let i in rdata) {
+				$("#list-group").append(`<span href="#" class="spanhover list-group-item list-group-item-action">${rdata[i].title}</span>`)
+			}
+			//追加完成显示选择器
+			$("#list-group").show();
+			//遍历监听子元素点击事件
+			$('#list-group .spanhover').each(function (index) {
+				$(this).on('click', function () {
+					console.log(rdata[index]);
+					$('#input1').val($(this).text())
+					//选择后隐藏列表
+					$("#list-group").hide();
+				})
+			})
+		}
+
+	</script>
+</body>
+
+</html>
