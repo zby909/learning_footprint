@@ -10,8 +10,8 @@ module.exports = {
 			host: '0.0.0.0',
 			port: '8080',
 			proxy: {
-				'/admin/posMachine/ticket': {
-					target: 'http://i.test.gzhaoku.com', // 要代理的域名
+				'aaa/users': {
+					target: 'http://192.168.1.22:8000', // 要代理的域名
 					changeOrigin: true, //允许跨域
 				},
 			},

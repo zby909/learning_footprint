@@ -3,10 +3,9 @@
 		<image class="logo" src="/static/logo.png"></image>
 		<view class="text-area">
 			<navigator url="../webview/pos" hover-class="navigator-hover">
-				<text class="title">
-					pos - 首页
-				</text>
+				<text class="title"> pos - 首页 </text>
 			</navigator>
+			<button @click="test">测试原生api</button>
 		</view>
 		<view class="button-demo">
 			<u-button :ripple="true">按钮组件演示</u-button>
@@ -18,19 +17,24 @@
 </template>
 
 <script>
+	let giftlugin = uni.requireNativePlugin("GiftModulePlugin")
 	export default {
 		data() {
 			return {
-				title: 'Hello'
-			}
+				title: 'Hello',
+			};
 		},
-		onLoad() {
-
-		},
+		onLoad() {},
 		methods: {
-
-		}
-	}
+			test() {
+				this.$u.toast('1');
+				// console.log(giftlugin.test());
+				console.log(giftlugin.giftMachine({},(res)=>{
+					console.log(res);
+				}));
+			},
+		},
+	};
 </script>
 
 <style lang="scss" scoped>

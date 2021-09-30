@@ -13,13 +13,20 @@ app.use(async (ctx, next) => {
 });
 app.use(bodyParser());
 
-const userRouter = new Router({ prefix: '/users' });
+const userRouter = new Router({ prefix: '/org2' });
 
-userRouter.get('/:id', (ctx, next) => {
+userRouter.get('/', async (ctx, next) => {
   console.log(ctx.request.params);
   console.log(ctx.request.query);
   console.log(ctx.request.body);
-  ctx.response.body = { a: 'Hello World' };
+  await new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve();
+    }, 3000);
+  }).then(res => {
+    next();
+  });
+  ctx.response.body = { a: ctx.message + 'org2 Hello World' };
 });
 
 // app.use((ctx, next) => {
@@ -28,9 +35,12 @@ userRouter.get('/:id', (ctx, next) => {
 //   console.log(ctx.request.params);
 //   ctx.response.body = "Hello World";
 // });
-
+app.use(async (ctx, next) => {
+  ctx.message = ' bbb ';
+  await next();
+});
 app.use(userRouter.routes());
 
-app.listen(8000, () => {
+app.listen(8001, () => {
   console.log('参数处理服务器启动成功~');
 });

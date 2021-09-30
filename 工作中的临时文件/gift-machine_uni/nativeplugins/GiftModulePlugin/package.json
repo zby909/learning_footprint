@@ -1,0 +1,19 @@
+{
+	"name": "GiftModulePlugin",
+	"id": "GiftModulePlugin",
+	"version": "0.1",
+	"description": "示例插件",
+	"_dp_type":"nativeplugin",
+	"_dp_nativeplugin":{
+		"android": {
+			"plugins": [
+				{
+					"type": "module",
+					"name": "GiftModulePlugin",
+					"class": "io.dcloud.uniplugin.GiftModule"
+				}
+			],
+			"integrateType": "aar"
+		}
+	}
+}

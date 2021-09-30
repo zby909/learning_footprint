@@ -57,6 +57,22 @@
             "sdkConfigs" : {
                 "ad" : {}
             }
+        },
+        "nativePlugins" : {
+            "GiftModulePlugin" : {
+                "__plugin_info__" : {
+                    "name" : "GiftModulePlugin",
+                    "description" : "示例插件",
+                    "platforms" : "Android",
+                    "url" : "",
+                    "android_package_name" : "",
+                    "ios_bundle_id" : "",
+                    "isCloud" : false,
+                    "bought" : -1,
+                    "pid" : "",
+                    "parameters" : {}
+                }
+            }
         }
     },
     /* 快应用特有相关 */
