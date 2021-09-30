@@ -4,7 +4,7 @@
 // } from 'lodash-es';
 
 const state = {
-	VX_TEST_VALUE: "is vuex"
+	VX_TEST_VALUE: "start test vuex"
 };
 
 const mutations = {

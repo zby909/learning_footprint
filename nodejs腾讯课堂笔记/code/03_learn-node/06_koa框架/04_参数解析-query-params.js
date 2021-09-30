@@ -15,7 +15,7 @@ app.use(bodyParser());
 
 const userRouter = new Router({ prefix: '/users' });
 
-userRouter.get('/:id', (ctx, next) => {
+userRouter.post('/:id', (ctx, next) => {
   console.log(ctx.request.params);
   console.log(ctx.request.query);
   console.log(ctx.request.body);

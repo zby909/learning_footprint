@@ -1,10 +1,10 @@
-import http1 from './http1';
-import http2 from './http2';
+import myhttp1 from './http1';
+import myhttp2 from './http2';
 // 注册两个请求服务器的伪实例
 //vm为一个Vue的实例，也即每个页面的"this"，所以我们能在这里获取vuex的变量等等
 const install = (Vue, vm) => {
-  Vue.prototype.http1 = http1(vm);
-  Vue.prototype.http2 = http2(vm);
+  Vue.prototype.http1 = myhttp1(vm);
+  Vue.prototype.http2 = myhttp2(vm);
 };
 export default {
   install,

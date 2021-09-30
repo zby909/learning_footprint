@@ -3,12 +3,11 @@
 		<image class="logo" src="/static/logo.png"></image>
 		<view class="text-area">
 			<navigator url="../webview/pos" hover-class="navigator-hover">
-				<text class="title"> pos - 首页 </text>
+				<text class="title"> 去pos机 - webview </text>
 			</navigator>
-			<button @click="test">测试原生api</button>
 		</view>
 		<view class="button-demo">
-			<u-button :ripple="true">按钮组件演示</u-button>
+			<u-button type="success" shape="square" :ripple="true" @click="test">测试原生api</u-button>
 		</view>
 		<view class="link-demo">
 			<u-link :color="$u.color['primary']" :under-line="true" href="http://www.baidu.com">www.baidu.com</u-link>
@@ -27,9 +26,8 @@
 		onLoad() {},
 		methods: {
 			test() {
-				this.$u.toast('1');
 				// console.log(giftlugin.test());
-				console.log(giftlugin.giftMachine({},(res)=>{
+				console.log(giftlugin.giftMachine({}, (res) => {
 					console.log(res);
 				}));
 			},

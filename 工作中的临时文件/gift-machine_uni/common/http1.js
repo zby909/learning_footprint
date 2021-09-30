@@ -1,5 +1,5 @@
-const http1 = vm => {
-	return function setNewSetting() {
+const myhttp1 = vm => {
+	return () => {
 		vm.$u.http.setConfig({
 			baseUrl: 'http://localhost:8000',
 			// 设置为json，返回后会对数据进行一次JSON.parse()
@@ -43,7 +43,6 @@ const http1 = vm => {
 				// 这里对res.result进行返回，将会在this.$u.post(url).then(res => {})的then回调中的res的到
 				// 如果配置了originalData为true，请留意这里的返回值
 				console.log(res);
-				// vm.$u.toast(res.data.a);
 				return res.data;
 			} else if (res.statusCode == 201) {
 				// 假设201为token失效，这里跳转登录
@@ -59,6 +58,9 @@ const http1 = vm => {
 				return false;
 			}
 		};
-	};
+
+		return vm.$u.http;
+	}
 };
-export default http1;
+
+export default myhttp1;

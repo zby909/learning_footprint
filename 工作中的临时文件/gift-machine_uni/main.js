@@ -18,4 +18,7 @@ const app = new Vue({
 import ALL_REQUEST from './common/request.js';
 Vue.use(ALL_REQUEST, app);
 
+import ALL_API from './common/modules/index.js';
+Vue.use(ALL_API, app);
+
 app.$mount();
