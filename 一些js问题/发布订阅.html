@@ -39,6 +39,7 @@
           this.events[type] && this.events[type].forEach(fn => fn.call(this, rest));
         }
       }
+
       // 使用如下
       const event = new EventEmitter();
 
