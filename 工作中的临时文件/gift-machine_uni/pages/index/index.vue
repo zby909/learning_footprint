@@ -3,7 +3,7 @@
 		<image class="logo" src="/static/logo.png"></image>
 		<view class="text-area">
 			<navigator url="../webview/pos" hover-class="navigator-hover">
-				<text class="title"> 去pos机 - webview </text>
+				<text class="title"> 实验 - webview </text>
 			</navigator>
 		</view>
 		<view class="button-demo">

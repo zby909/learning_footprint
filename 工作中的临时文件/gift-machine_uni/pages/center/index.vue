@@ -4,6 +4,9 @@
 		<view>
 			<text class="title"> vuex - {{ username }} </text>
 		</view>
+		<view>
+			<TestCmp></TestCmp>
+		</view>
 		<view class="text-area">
 			<u-button @click="sumbitByPost" type="primary" size="medium" shape="square" :ripple="true">快速http请求</u-button>
 			<u-button @click="sumbitByPost2" type="primary" size="medium" shape="square" :ripple="true">延迟响应的http请求</u-button>
@@ -36,12 +39,13 @@
 		},
 		methods: {
 			async sumbitByPost() {
-				let res = await this.API.test.testPost({ body: '1号node服务器', }, this);
+				console.log(this);
+				let res = await this.$API.test.testPost({ body: '1号node服务器'});
 				console.log("%c 1号node服务器响应", "color:orange")
 				this.$u.toast(res.a)
 			},
 			async sumbitByPost2() {
-				let res = await this.API.test.testGet({ body: '2号node服务器', }, this);
+				let res = await this.$API.test.testGet({ body: '2号node服务器'});
 				console.log("%c 2号node服务器响应", "color:red")
 				this.$u.toast(res.a)
 			},

@@ -1,6 +1,6 @@
-const myhttp2 = vm => {
+export default (Vue, vm) => {
 	return () => {
-		vm.$u.http.setConfig({
+		Vue.prototype.$u.http.setConfig({
 			baseUrl: 'http://localhost:8001',
 			// 设置为json，返回后会对数据进行一次JSON.parse()
 			dataType: 'json',
@@ -16,7 +16,7 @@ const myhttp2 = vm => {
 		});
 
 		// 请求拦截，配置Token等参数
-		vm.$u.http.interceptor.request = config => {
+		Vue.prototype.$u.http.interceptor.request = config => {
 			// vuex方法，那么需要使用$store.state获取
 			config.header.token = vm.$store.state.test.VX_TEST_VALUE;
 
@@ -37,7 +37,7 @@ const myhttp2 = vm => {
 		};
 
 		// 响应拦截，判断状态码是否通过
-		vm.$u.http.interceptor.response = res => {
+		Vue.prototype.$u.http.interceptor.response = res => {
 			if (res.statusCode == 200) {
 				// res为服务端返回值，可能有code，result等字段
 				// 这里对res.result进行返回，将会在this.$u.post(url).then(res => {})的then回调中的res的到
@@ -62,4 +62,3 @@ const myhttp2 = vm => {
 		return vm.$u.http;
 	}
 };
-export default myhttp2;

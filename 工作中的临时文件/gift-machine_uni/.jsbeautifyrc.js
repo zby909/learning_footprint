@@ -1,3 +1,4 @@
+//此配置仅为记录hbuilder编辑器的代码风格 每使用新的hbuilder时应复制此代码覆盖hbuilder插件配置内的此文件
 module.exports = {
 	parsers: {
 		".js": "js",

@@ -13,8 +13,7 @@ const install = (Vue, vm) => {
 	// 	return vm.http1.get('/users/555?query=1', params);
 	// };
 	// Vue.prototype.API = { testGet };
-	
-	Vue.prototype.API = apiModules;
+	Vue.prototype.$API = apiModules;
 };
 
 export default {
