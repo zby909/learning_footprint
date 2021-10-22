@@ -1,68 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-</head>
+  <body>
+    <script>
+      // 对象数组的去重，并统计每一项重复次数
+      const arr = [1, 1, 45, 64, 2, 1, 1, 65, 3, 2, 45, 64, 66, 45];
+      const repeatTime = {};
+      const repeatArr = arr.reduce((current, item) => {
+        if (repeatTime[item]) {
+          repeatTime[item]++;
+          return current;
+        }
+        repeatTime[item] = 1;
+        return [...current, item];
+      }, []);
 
-<body>
-	<script>
-		// 对象数组的去重，并统计每一项重复次数
-		const arr = [1, 1, 45, 64, 2, 1, 1, 65, 3, 2, 45, 64, 66, 45];
-		const repeatTime = {};
-		const repeatArr = arr.reduce((current, item) => {
-			if (repeatTime[item]) {
-				repeatTime[item]++;
-				return current;
-			}
-			repeatTime[item] = 1;
-			return [...current, item];
-		}, [])
+      // for (let i in repeatTime) {
+      // 	if (repeatTime[i] === 1) {
+      // 		delete repeatTime[i]
+      // 	}
+      // }
+      console.log(repeatTime);
+      console.log(repeatArr);
+      console.log(arr);
 
-		// for (let i in repeatTime) {
-		// 	if (repeatTime[i] === 1) {
-		// 		delete repeatTime[i]
-		// 	}
-		// }
-		console.log(repeatTime);
-		console.log(repeatArr);
-		console.log(arr);
+      // 计算对象数组某一属性的总和
+      const list = [
+        { name: 'left', width: 20 },
+        { name: 'center', width: 70 },
+        { name: 'right', width: 10 },
+      ];
+      const total = list.reduce((currentTotal, item) => {
+        return currentTotal + item.width;
+      }, 0);
+      // total: 100
+      console.log(total);
 
+      // for (let i = 0; i < 10; i++) {
+      // 	if (i == 2) {
+      // 		// continue
+      // 		// break
+      // 	}
+      // 	console.log(i);
+      // }
 
-
-		// 计算对象数组某一属性的总和
-		const list = [
-			{ name: 'left', width: 20 },
-			{ name: 'center', width: 70 },
-			{ name: 'right', width: 10 },
-		];
-		const total = list.reduce((currentTotal, item) => {
-			return currentTotal + item.width;
-		}, 0);
-		// total: 100
-		console.log(total);
-
-
-		// for (let i = 0; i < 10; i++) {
-		// 	if (i == 2) {
-		// 		// continue
-		// 		// break
-		// 	}
-		// 	console.log(i);
-		// }
-
-
-		// for (let o of [1, 2, 3, 4]) {
-		// 	if (o == 2) {
-		// 		// continue
-		// 		// break
-		// 	}
-		// 	console.log(o);
-		// }
-
-	</script>
-</body>
-
+      // for (let o of [1, 2, 3, 4]) {
+      // 	if (o == 2) {
+      // 		// continue
+      // 		// break
+      // 	}
+      // 	console.log(o);
+      // }
+    </script>
+  </body>
 </html>

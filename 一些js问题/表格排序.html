@@ -1,0 +1,88 @@
+<!--
+ * @Description: 
+ * @Author: zby
+ * @Date: 2021-10-09 13:26:50
+ * @LastEditors: zby
+ * @Reference: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- // 如下表格，点击 .date 后使表格按日期排序，当前是正序则改为倒序，当前是倒序则改为正序，要求以原生 JavaScript 实现。 -->
+    <table id="c">
+      <thead>
+        <tr>
+          <th class="date">日期</th>
+          <th class="total">总次数</th>
+        </tr>
+      </thead>
+      <tbody id="tbody">
+        <tr>
+          <td>2017年10月23日</td>
+          <td>68,112</td>
+        </tr>
+        <tr>
+          <td>2017年8月6日</td>
+          <td>68,020</td>
+        </tr>
+        <tr>
+          <td>2018年11月11日</td>
+          <td>69,433</td>
+        </tr>
+        <tr>
+          <td>2016年5月12日</td>
+          <td>69,699</td>
+        </tr>
+        <tr>
+          <td>2015年1月18日</td>
+          <td>42,565</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <script>
+      let btn = document.querySelector('.date');
+      let tbody = document.querySelector('#tbody');
+      let trs = tbody.querySelectorAll('tr');
+      let flag = false;
+      btn.addEventListener('click', () => {
+        flag = !flag;
+        sort(flag);
+      });
+
+      function sort(flag) {
+        let time_arr = [];
+        for (let i = 0; i < trs.length; i++) {
+          let time_text = trs[i].querySelectorAll('td')[0].innerText;
+          time_arr.push({ timestamp: filtertime(time_text), old_order: i, old_el: trs[i] });
+          tbody.removeChild(trs[i]);
+        }
+        time_arr.sort(compare(flag));
+        for (let e of time_arr) {
+          tbody.appendChild(e.old_el);
+        }
+      }
+
+      function filtertime(time_text) {
+        time_text = time_text.replace(/年|月|日/g, '/');
+        return +new Date(time_text);
+      }
+
+      function compare(flag) {
+        return function sort_time(a, b) {
+          if (flag) {
+            return a.timestamp - b.timestamp;
+          } else {
+            return b.timestamp - a.timestamp;
+          }
+        };
+      }
+    </script>
+  </body>
+</html>
