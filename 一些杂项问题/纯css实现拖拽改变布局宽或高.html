@@ -1,0 +1,84 @@
+<!--
+ * @Description: 
+ * @Author: zby
+ * @Date: 2022-07-12 11:03:56
+ * @LastEditors: zby
+ * @Reference: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .column {
+        display: flex;
+        align-items: center;
+      }
+
+      .column-left {
+        position: relative;
+        height: 400px;
+        background-color: #ccc;
+      }
+
+      .resize-bar {
+        width: 200px;
+        height: inherit;
+        resize: horizontal;
+        /* cursor: ew-resize; */
+        /* cursor: col-resize; */
+        opacity: 0;
+        overflow: scroll;
+      }
+
+      .resize-bar:hover ~ .resize-line,
+      .resize-bar:active ~ .resize-line {
+        border-left: 1px dashed skyblue;
+      }
+
+      .resize-bar::-webkit-scrollbar {
+        width: 200px;
+        height: inherit;
+      }
+
+      /* 拖拽线 */
+      .resize-line {
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        border-right: 2px solid #eee;
+        border-left: 1px solid #bbb;
+        pointer-events: none;
+      }
+
+      .resize-box {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 5px;
+      }
+
+      .column-right {
+        flex: 1;
+        height: 400px;
+        background-color: #eee;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="column">
+      <div class="column-left">
+        <div class="resize-bar"></div>
+        <div class="resize-line"></div>
+        <div class="resize-box">左侧的内容，左侧的内容，左侧的内容，左侧的内容</div>
+      </div>
+      <div class="column-right">右侧的内容，右侧的内容，右侧的内容，右侧的内容</div>
+    </div>
+  </body>
+</html>
